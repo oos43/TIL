@@ -26,3 +26,12 @@
 ### EntityManager & @Transactional
 - 엔티티 매니저에서 수행되는 모든 로직은 트랜잭션 안에서 수행되어야 한다.
 - 트랜잭션 : 하나의 작업 단위
+
+### cmd 명령어
+- dir  
+  특정 디렉토리에 포함된 모든 파일과 하위 디렉토리를 나열하는 명령어
+- cd  
+  change directory  
+  폴더를 이동하는 명령어
+- gradlew build  
+  jar 빌드 만드는 명령어
