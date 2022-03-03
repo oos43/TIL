@@ -43,3 +43,15 @@
 - 지연로딩
   - __프록시__ 를 사용해 데이터를 조회할 때 연관된 객체를 필요할 때 가져올 수 있음
   - 프록시 객체는 실제 엔티티를 참조하고 있음
+
+### EntityManager 사용
+- persist : 영속성 컨텍스트에 객체를 넣고, 트랜잭션이 커밋되는 시점에 insert 쿼리가 날아가 DB에 반영됨
+- find(타입, PK) : 단건 조회
+- createQuery(JPQL, 반환 타입)
+- getResultList : 결과가 하나 이상일 때 리스트를 반환
+- setParameter : 파라미터 바인딩
+
+### JPQL
+- Java Persistence Query Language
+- sql은 테이블을 대상으로 하는 쿼리
+- jpql은 엔티티 객체를 대상으로 하는 쿼리
