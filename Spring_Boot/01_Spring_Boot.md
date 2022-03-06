@@ -27,19 +27,6 @@
 - Database Connection Pool을 관리해주는 역할을 한다.
 - 미리 정해놓은 만큼의 connection을 pool에 담아 놓고 요청이 들어오면 thread가 connection을 요청하고 HikariCP가 pool 내에 있는 connection을 연결해준다.
 
-### EntityManager & @Transactional
-- 엔티티 매니저에서 수행되는 모든 로직은 트랜잭션 안에서 수행되어야 한다.
-- 트랜잭션 : 하나의 작업 단위
-
-### cmd 명령어
-- __dir__  
-  특정 디렉토리에 포함된 모든 파일과 하위 디렉토리를 나열하는 명령어
-- __cd__  
-  change directory  
-  폴더를 이동하는 명령어
-- __gradlew build__  
-  jar 빌드 만드는 명령어
-
 ### given-when-then 패턴
 - 테스트 코드를 작성하는 표현 방식
 - 준비 - 실행 - 검증
@@ -54,6 +41,19 @@
 ### AssertJ
 - 테스트 코드를 작성할 때 유용한 라이브러리
 
+## 명령어
+
+### cmd 명령어
+- __dir__  
+  특정 디렉토리에 포함된 모든 파일과 하위 디렉토리를 나열하는 명령어
+- __cd__  
+  change directory  
+  폴더를 이동하는 명령어
+- __gradlew build__  
+  jar 빌드 만드는 명령어
+
 ### IntelliJ 단축키
 - 검색 : Ctrl + Shift + F
 - Alt + Enter
+- Test : Shift + Ctrl + T
+- Preference : Ctrl + Alt + S

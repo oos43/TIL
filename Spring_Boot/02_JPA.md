@@ -55,3 +55,42 @@
 - Java Persistence Query Language
 - sql은 테이블을 대상으로 하는 쿼리
 - jpql은 엔티티 객체를 대상으로 하는 쿼리
+
+### EntityManager & @Transactional
+- JPA의 엔티티 매니저에서 수행되는 모든 데이터 변경, 로직은 트랜잭션 안에서 수행되어야 한다.
+  - 트랜잭션 : 하나의 작업 단위
+- 클래스 레벨에서 @Transactional 어노테이션을 쓰면 public 메소드들에 적용됨
+  - @Transactional(readOnly = true) 를 추가하면 조회 성능을 최적화함
+
+### 필드 주입
+```JAVA
+  @Autowired
+  private MemberRepository memberRepository;
+```
+
+### 생성자 주입
+```JAVA
+@Service
+@Transactional
+public class MemberService {
+
+  private final MemberRepository memberRepository;
+
+  @Autowired
+  public MemberService(MemberRepository memberRepository) {
+    this.memberRepository = memberRepository;
+  }
+}
+```
+- 테스트 코드 등을 작성할 때 memberRepository를 변경할 필요가 있을 때가 있으나, 필드 주입은 memberRepository를 변경하기 어려움
+- 생성자 주입을 하면 memberRepository에 직접 주입 가능
+- 최신 버전 스프링을 사용하면 @Autowired 어노테이션 생략 가능
+- __@RequiredArgsConstructor__ 어노테이션(Lombok)으로 생성자 코드를 대체할 수 있음
+
+### 테스트
+- @Transactional : 테스트에서는 트랜잭션을 commit 하지 않고 rollback 하기 때문에 insert 쿼리가 날아가지 않음
+- insert 쿼리를 확인하고 싶으면 EntityManager를 만들고 flush 메소드 사용
+  - flush : 영속성 컨텍스트에 있는 변경이나 등록 내용을 데이터베이스에 반영
+- assertEquals(member, memberRepository.findOne(saveId));
+  - member와 memberRepository.findOne(saveId)가 같으면 성공
+  - 이렇게 확인하는 게 가능한 이유는 JPA에서 같은 트랜잭션 안에서 PK 값이 같은 엔티티는 같은 영속성 컨텍스트 안에서 하나로 관리되기 때문
