@@ -41,6 +41,12 @@
 ### AssertJ
 - 테스트 코드를 작성할 때 유용한 라이브러리
 
+### 메모리 모드로 테스트 하기
+- test - resources - application.yml 추가
+- url을 __jdbc:h2:mem:test__ 로 변경
+- h2 데이터베이스와 연결하지 않고도 테스트 가능
+- 별도의 설정이 없으면 스프링 부트가 메모리 모드로 테스트 하기 때문에 application.yml이 없어도 가능함
+
 ## 명령어
 
 ### cmd 명령어
