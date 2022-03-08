@@ -32,6 +32,16 @@
 #### 연관관계의 주인
 - 두 객체 연관관계 중 하나를 정해서 테이블의 외래키를 관리해야 하는데 이를 연관관게의 주인이라 함
 
+### 연관관계 편의 메서드
+- 객체에 양방향 연관관계를 한 번에 설정하는 메서드
+- 예를 들어, Member와 Order가 양방향 연관관계일 때
+```JAVA
+public void setMember(Member member) {
+  this.member = member;
+  member.getOrders().add(this);
+}
+```
+
 ### @Id, @GeneratedValue
 - 기본키 매핑 시 사용하는 어노테이션
 - 직접 할당 시에는 @Id만 사용하고,  
@@ -62,31 +72,6 @@
 - 클래스 레벨에서 @Transactional 어노테이션을 쓰면 public 메소드들에 적용됨
   - @Transactional(readOnly = true) 를 추가하면 조회 성능을 최적화함
 
-### 필드 주입
-```JAVA
-  @Autowired
-  private MemberRepository memberRepository;
-```
-
-### 생성자 주입
-```JAVA
-@Service
-@Transactional
-public class MemberService {
-
-  private final MemberRepository memberRepository;
-
-  @Autowired
-  public MemberService(MemberRepository memberRepository) {
-    this.memberRepository = memberRepository;
-  }
-}
-```
-- 테스트 코드 등을 작성할 때 memberRepository를 변경할 필요가 있을 때가 있으나, 필드 주입은 memberRepository를 변경하기 어려움
-- 생성자 주입을 하면 memberRepository에 직접 주입 가능
-- 최신 버전 스프링을 사용하면 @Autowired 어노테이션 생략 가능
-- __@RequiredArgsConstructor__ 어노테이션(Lombok)으로 생성자 코드를 대체할 수 있음
-
 ### 테스트
 - @Transactional : 테스트에서는 트랜잭션을 commit 하지 않고 rollback 하기 때문에 insert 쿼리가 날아가지 않음
 - insert 쿼리를 확인하고 싶으면 EntityManager를 만들고 flush 메소드 사용
@@ -94,3 +79,8 @@ public class MemberService {
 - assertEquals(member, memberRepository.findOne(saveId));
   - member와 memberRepository.findOne(saveId)가 같으면 성공
   - 이렇게 확인하는 게 가능한 이유는 JPA에서 같은 트랜잭션 안에서 PK 값이 같은 엔티티는 같은 영속성 컨텍스트 안에서 하나로 관리되기 때문
+
+### 어노테이션
+- @PersistenceContext : Spring이 생성한 EntityManager를 주입하는 어노테이션
+- @PersistenceUnit : EntityManagerFactory를 직접 주입하고자 할 때 쓰는 어노테이션
+

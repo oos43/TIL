@@ -47,6 +47,32 @@
 - h2 데이터베이스와 연결하지 않고도 테스트 가능
 - 별도의 설정이 없으면 스프링 부트가 메모리 모드로 테스트 하기 때문에 application.yml이 없어도 가능함
 
+### 필드 주입
+```JAVA
+  @Autowired
+  private MemberRepository memberRepository;
+```
+
+### 생성자 주입
+```JAVA
+@Service
+@Transactional
+public class MemberService {
+
+  private final MemberRepository memberRepository;
+
+  @Autowired
+  public MemberService(MemberRepository memberRepository) {
+    this.memberRepository = memberRepository;
+  }
+}
+```
+- 테스트 코드 등을 작성할 때 memberRepository를 변경할 필요가 있을 때가 있으나, 필드 주입은 memberRepository를 변경하기 어려움
+- 생성자 주입을 하면 memberRepository에 직접 주입 가능
+- 최신 버전 스프링을 사용하면 @Autowired 어노테이션 생략 가능
+- __@RequiredArgsConstructor__ 어노테이션(Lombok)으로 생성자 코드를 대체할 수 있음
+  - @RequiredArgsConstructor : final이 붙은 필드만 가지고 생성자를 만들어주는 Lombok
+
 ## 명령어
 
 ### cmd 명령어
