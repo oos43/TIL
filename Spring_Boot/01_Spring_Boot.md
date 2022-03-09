@@ -89,3 +89,4 @@ public class MemberService {
 - Alt + Enter
 - Test : Shift + Ctrl + T
 - Preference : Ctrl + Alt + S
+- Extract -> Variable : Ctrl + Alt + V

@@ -17,7 +17,6 @@
   - 추적 불가 (식별자 X)
   - 기본 값 타입, 임베디드 타입이 있음
 
-
 ### 상속 관계 매핑
 - 객체의 상속 구조와 DB의 슈퍼타입, 서브타입 관계를 매핑하는 것
   #### 1. 싱글 테이블 전략 (SINGLE_TABLE)
@@ -84,3 +83,28 @@ public void setMember(Member member) {
 - @PersistenceContext : Spring이 생성한 EntityManager를 주입하는 어노테이션
 - @PersistenceUnit : EntityManagerFactory를 직접 주입하고자 할 때 쓰는 어노테이션
 
+### casecade = CasecadeType.ALL
+```JAVA
+@Entity
+public class Order {
+
+  @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+  private List<OrderItem> orderItems = new ArrayList<>();
+}
+
+persist(orderItem);
+persist(order);
+```
+- 기본적으로 모든 엔티티는 저장하고 싶으면 각자 persist 해줘야 함
+- cascade = CascadeType.ALL 옵션을 추가하면 persist(order)라고만 써도 orderItem도 저장됨  
+  (cascade는 persist를 전파함)
+- private owner인 경우에만 사용해야 함 (OrderItem을 Order만 참조해서 씀, 다른 데서 OrderItem을 참조하는 경우에는 cascade를 사용하면 안 됨)
+
+### Dirty Checking
+- 트랜잭션 안에서 엔티티에 변화가 생기면, 그 변경 사항을 자동으로 DB에 반영하는 것
+
+### 도메인 모델 패턴
+- 엔티티가 비즈니스 로직을 가지고 객체 지향의 특성을 적극 활용하는 것
+
+### 트랜잭션 스크립트 패턴
+- 엔티티에는 비즈니스 로직이 거의 없고, 서비스 계층에서 대부분의 비즈니스 로직을 처리하는 것
