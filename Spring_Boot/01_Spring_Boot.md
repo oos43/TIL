@@ -73,6 +73,11 @@ public class MemberService {
 - __@RequiredArgsConstructor__ 어노테이션(Lombok)으로 생성자 코드를 대체할 수 있음
   - @RequiredArgsConstructor : final이 붙은 필드만 가지고 생성자를 만들어주는 Lombok
 
+### @NoArgsConstructor(access = AccessLevel.PROTECTED)
+- 기본 생성자의 접근 제한자를 protected로 만들어주는 어노테이션
+- 생성 메서드가 있을 때 new를 이용해서 객체를 생성하지 못 하도록 제한하기 위해 사용  
+  (이렇게 제한하는 방식으로 코딩하는 것이 좋다)
+
 ## 명령어
 
 ### cmd 명령어
