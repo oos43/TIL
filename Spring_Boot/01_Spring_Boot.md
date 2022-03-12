@@ -9,7 +9,7 @@
 - 웹과 독립 실행형 환경을 위한 최신의 서버 사이드 자바 템플릿 엔진이다.  
 - 현대 HTML5 JVM 웹 개발에 이상적이다.
 
-### Lombok
+### [Lombok](https://projectlombok.org/features/all)
 - 자바 라이브러리
 - 반복되는 코드 작성을 어노테이션으로 대신할 수 있게 해준다.  
   ex. @Setter, @Getter
@@ -26,26 +26,6 @@
 ### HikariCP
 - Database Connection Pool을 관리해주는 역할을 한다.
 - 미리 정해놓은 만큼의 connection을 pool에 담아 놓고 요청이 들어오면 thread가 connection을 요청하고 HikariCP가 pool 내에 있는 connection을 연결해준다.
-
-### given-when-then 패턴
-- 테스트 코드를 작성하는 표현 방식
-- 준비 - 실행 - 검증
-
-### Unit Test (단위 테스트)
-- 소스 코드의 특정 모듈이 의도된 대로 정확히 작동하는지 검증하는 절차  
-  모든 함수와 메소드에 대한 테스트 케이스를 작성하는 절차
-
-### JUnit
-- 자바용 단위 테스트 프레임워크
-
-### AssertJ
-- 테스트 코드를 작성할 때 유용한 라이브러리
-
-### 메모리 모드로 테스트 하기
-- test - resources - application.yml 추가
-- url을 __jdbc:h2:mem:test__ 로 변경
-- h2 데이터베이스와 연결하지 않고도 테스트 가능
-- 별도의 설정이 없으면 스프링 부트가 메모리 모드로 테스트 하기 때문에 application.yml이 없어도 가능함
 
 ### 필드 주입
 ```JAVA
@@ -74,11 +54,18 @@ public class MemberService {
   - @RequiredArgsConstructor : final이 붙은 필드만 가지고 생성자를 만들어주는 Lombok
 
 ### @NoArgsConstructor(access = AccessLevel.PROTECTED)
-- 기본 생성자의 접근 제한자를 protected로 만들어주는 어노테이션
+- 기본 생성자의 접근 제한자를 protected로 만들어주는 Lombok 어노테이션
 - 생성 메서드가 있을 때 new를 이용해서 객체를 생성하지 못 하도록 제한하기 위해 사용  
   (이렇게 제한하는 방식으로 코딩하는 것이 좋다)
 
-## 명령어
+### 도메인 모델 패턴
+- 엔티티가 비즈니스 로직을 가지고 객체 지향의 특성을 적극 활용하는 것
+
+### 트랜잭션 스크립트 패턴
+- 엔티티에는 비즈니스 로직이 거의 없고, 서비스 계층에서 대부분의 비즈니스 로직을 처리하는 것
+
+
+## 명령어 & 단축키
 
 ### cmd 명령어
 - __dir__  
@@ -92,6 +79,8 @@ public class MemberService {
 ### IntelliJ 단축키
 - 검색 : Ctrl + Shift + F
 - Alt + Enter
-- Test : Shift + Ctrl + T
+- Test : Ctrl + Shift + T
 - Preference : Ctrl + Alt + S
 - Extract -> Variable : Ctrl + Alt + V
+- Extract -> Method : Ctrl + Alt + M
+- Extract -> Parameter : Ctrl + Alt + P
