@@ -4,10 +4,30 @@
 
 ## 프로젝트 환경설정
 
-### Thymeleaf
+### [Thymeleaf](https://www.thymeleaf.org/)
 - view template의 하나
 - 웹과 독립 실행형 환경을 위한 최신의 서버 사이드 자바 템플릿 엔진이다.  
 - 현대 HTML5 JVM 웹 개발에 이상적이다.
+  ```HTML
+  <!-- thymeleaf namespace 관례상 th로 많이 사용 -->
+  <html xmlns:th="http://www.thymeleaf.org">
+  ```
+- [Thymeleaf Page Layouts](https://www.thymeleaf.org/doc/articles/layouts.html)
+  - include-style layouts  
+    ```HTML
+    <head th:replace="fragments/header :: header">
+    ```
+  - hierarchical-style layouts
+- 타임리프 문법
+  ```HTML
+  <form role="form" action="/members/new" th:object="${memberForm}" method="post">
+    <input type="text" th:field="*{city}" class="form-control" placeholder="도시를 입력하세요">
+
+  ```
+  - th:object : form 안에서 이 객체를 계속 사용하겠다
+  - \* : object를 참고하겠다 (프로퍼티 접근법-Getter, Setter 사용)
+  - th:field : 렌더링이 될 때 이름으로 id, name을 만들어준다
+<br>
 
 ### [Lombok](https://projectlombok.org/features/all)
 - 자바 라이브러리
