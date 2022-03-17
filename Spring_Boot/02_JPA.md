@@ -100,8 +100,16 @@ persist(order);
   (cascade는 persist를 전파함)
 - private owner인 경우에만 사용해야 함 (OrderItem을 Order만 참조해서 씀, 다른 데서 OrderItem을 참조하는 경우에는 cascade를 사용하면 안 됨)
 
-### Dirty Checking
+### 변경 감지와 병합
+#### 1. 변경 감지 (Dirty Checking)
 - 트랜잭션 안에서 엔티티에 변화가 생기면, 그 변경 사항을 자동으로 DB에 반영하는 것
+#### 2. 병합 (Merge)
+- 준영속 상태의 엔티티를 영속 상태로 변경할 때 사용하는 기능
+- *주의!* 병합은 모든 필드를 다 변경하기 때문에 값이 없으면 null로 업데이트를 할 위험이 있음
+
+__병합보다는 변경 감지__ 를 사용하도록 하자
+
+### 준영속 엔티티
 
 ### Querydsl
 - 동적 쿼리 작성에 유용한 라이브러리

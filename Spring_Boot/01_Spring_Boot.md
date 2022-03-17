@@ -95,6 +95,8 @@ public class MemberService {
 - JPA를 사용할 때는 엔티티를 최대한 순수하게 유지해야 함 (핵심 비즈니스 로직에만 dependency가 있도록 설계하는 것이 중요)
 - 엔티티보다는 form 객체나 DTO를 사용하는 것이 좋음
 
+### @PathVariable
+
 <br>
 <br>
 
@@ -117,3 +119,4 @@ public class MemberService {
 - Extract -> Variable : Ctrl + Alt + V
 - Extract -> Method : Ctrl + Alt + M
 - Extract -> Parameter : Ctrl + Alt + P
+- Upper Case : Shift + Ctrl + U
